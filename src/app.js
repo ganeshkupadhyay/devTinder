@@ -6,10 +6,32 @@ app.get("/user",(req,res)=>{
 });
 
 
-app.post("/user",(req,res)=>{
+app.post("/user",(req,res,next)=>{
     //logic to save data to databse.
-    res.send("Data is saved to database");
-});
+    console.log("1st route handler with no response");
+    next();
+},
+
+(req,res,next)=>{
+    console.log("2nd route handler with no response");
+    next();
+},
+
+(req,res,next)=>{
+    console.log("3rd route handler with no response");
+    next();
+},
+
+(req, res,next)=>{
+    res.send("finally found the response in 4th route handler");
+}
+
+
+
+
+
+
+);
 
 app.delete("/user",(req,res)=>{
     res.send("User deleted");
