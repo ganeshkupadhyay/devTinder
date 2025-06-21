@@ -1,6 +1,9 @@
 {
   "dependencies": {
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mongoos": "^0.0.1-security",
+    "mongoose": "^8.15.1",
     "node": "^22.16.0"
   },
   "name": "clear",
