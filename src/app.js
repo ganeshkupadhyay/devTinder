@@ -4,24 +4,35 @@ const connectDb = require("./config/database");
 const app = express();
 const User = require("./models/user");
 
+
+ // this is a middleware provided by express itself
+app.use(express.json());
+
 //creating signup api.
 app.post("/signup", async (req,res) => {
 
-  const userobj = {
-    firstName : "Virat",
-   lastName : "Kohli",
-   emailId : "virat@kohli.com",
-   password : "gk1234"
+  console.log(req.body); // ab ye request.body userobj  ke jaisa hi same hai , to jahan main new User me userobj pass krta tha wahan main , ab directly 
+  // ye req.body hi pass kar dunga .
+
+  // const userobj = {
+  //   firstName : "Virat",
+  //  lastName : "Kohli",
+  //  emailId : "virat@kohli.com",
+  //  password : "gk1234"
 
 
-  }  
+  // }  
  
 
-  // Creating a new instance of the User model.
-  const user = new User(userobj);
+  // // Creating a new instance of the User model.
+  // const user = new User(userobj);
+
+  const user = new User(req.body);
+  await user.save();
+  res.send("User added successfully!!!");
  
-   await user.save();
-   res.send("User added successfully!!!");
+  //  await user.save();
+  //  res.send("User added successfully!!!");
 
 });
    
